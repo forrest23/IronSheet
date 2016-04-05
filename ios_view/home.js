@@ -3,6 +3,7 @@
  */
 'use strict';
 var React = require('react-native');
+var Swiper = require('./common/swiper.js');
 
 var {
     StyleSheet,
@@ -22,8 +23,10 @@ var home = React.createClass({
     render: function () {
         return (
             <View style={styles.container}>
-                <Text style={{color:'#fff'}}>铁皮首页</Text>
+                <Swiper></Swiper>
+
             </View>
+
         );
     },
 

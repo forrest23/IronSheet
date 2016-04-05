@@ -1,10 +1,12 @@
 /**
  * Created by fgmh on 16/4/1.
+ * 铁皮圈
  */
 'use strict';
 var React = require('react-native');
 var webView = require('./common/webView.js');
 var ScrollableTabView = require('react-native-scrollable-tab-view');
+var Moments =require('./common/moments.js')
 
 var {
     StyleSheet,
@@ -21,9 +23,8 @@ var circle = React.createClass({
         return (
             <ScrollableTabView style={{marginTop: 70}}>
                 <ScrollView tabLabel="最热" style={styles.tabView}>
-                    <View style={styles.card}>
-                        <Text>电影</Text>
-                    </View>
+                    <Moments>
+                    </Moments>
                 </ScrollView>
                 <ScrollView tabLabel="最新" style={styles.tabView}>
                     <View style={styles.card}>
