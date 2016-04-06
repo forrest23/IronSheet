@@ -38,6 +38,8 @@
 		760F46E21CAD546F00E60C2B /* reactnative_logo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 760F46D21CAD546F00E60C2B /* reactnative_logo@3x.png */; };
 		760F46E31CAD546F00E60C2B /* ruby_china_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 760F46D31CAD546F00E60C2B /* ruby_china_logo.png */; };
 		760F46E51CAE7C4B00E60C2B /* left_liebiao.png in Resources */ = {isa = PBXBuildFile; fileRef = 760F46E41CAE7C4B00E60C2B /* left_liebiao.png */; };
+		7625BE7C1CB49E0D00D5D100 /* message.png in Resources */ = {isa = PBXBuildFile; fileRef = 7625BE7A1CB49E0D00D5D100 /* message.png */; };
+		7625BE7D1CB49E0D00D5D100 /* message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7625BE7B1CB49E0D00D5D100 /* message@2x.png */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
 
@@ -158,6 +160,8 @@
 		760F46D21CAD546F00E60C2B /* reactnative_logo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reactnative_logo@3x.png"; sourceTree = "<group>"; };
 		760F46D31CAD546F00E60C2B /* ruby_china_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ruby_china_logo.png; sourceTree = "<group>"; };
 		760F46E41CAE7C4B00E60C2B /* left_liebiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_liebiao.png; sourceTree = "<group>"; };
+		7625BE7A1CB49E0D00D5D100 /* message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message.png; sourceTree = "<group>"; };
+		7625BE7B1CB49E0D00D5D100 /* message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message@2x.png"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -297,6 +301,8 @@
 		760F46C41CAD546F00E60C2B /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				7625BE7A1CB49E0D00D5D100 /* message.png */,
+				7625BE7B1CB49E0D00D5D100 /* message@2x.png */,
 				760F46E41CAE7C4B00E60C2B /* left_liebiao.png */,
 				760F46C31CAD546F00E60C2B /* avatar.png */,
 				760F46C51CAD546F00E60C2B /* icon.png */,
@@ -582,6 +588,7 @@
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				760F46DC1CAD546F00E60C2B /* icon_flat.png in Resources */,
 				760F46E51CAE7C4B00E60C2B /* left_liebiao.png in Resources */,
+				7625BE7D1CB49E0D00D5D100 /* message@2x.png in Resources */,
 				760F46E21CAD546F00E60C2B /* reactnative_logo@3x.png in Resources */,
 				760F46D91CAD546F00E60C2B /* icon80.png in Resources */,
 				760F46DD1CAD546F00E60C2B /* nodes.png in Resources */,
@@ -591,6 +598,7 @@
 				760F46DA1CAD546F00E60C2B /* icon@2x.png in Resources */,
 				760F46E01CAD546F00E60C2B /* reactnative_logo.png in Resources */,
 				760F46DE1CAD546F00E60C2B /* nodes@2x.png in Resources */,
+				7625BE7C1CB49E0D00D5D100 /* message.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

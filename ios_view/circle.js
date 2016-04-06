@@ -6,7 +6,8 @@
 var React = require('react-native');
 var webView = require('./common/webView.js');
 var ScrollableTabView = require('react-native-scrollable-tab-view');
-var Moments =require('./common/moments.js')
+var Moments =require('./common/moments.js');
+
 
 var {
     StyleSheet,
@@ -22,10 +23,10 @@ var circle = React.createClass({
     render: function () {
         return (
             <ScrollableTabView style={{marginTop: 70}}>
-                <ScrollView tabLabel="最热" style={styles.tabView}>
+                <View tabLabel="最热" style={styles.tabView}>
                     <Moments>
                     </Moments>
-                </ScrollView>
+                </View>
                 <ScrollView tabLabel="最新" style={styles.tabView}>
                     <View style={styles.card}>
                         <Text>Friends</Text>
