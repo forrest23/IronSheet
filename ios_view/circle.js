@@ -27,16 +27,14 @@ var circle = React.createClass({
                     <Moments>
                     </Moments>
                 </View>
-                <ScrollView tabLabel="最新" style={styles.tabView}>
-                    <View style={styles.card}>
-                        <Text>Friends</Text>
-                    </View>
-                </ScrollView>
-                <ScrollView tabLabel="推荐" style={styles.tabView}>
-                    <View style={styles.card}>
-                        <Text>Messenger</Text>
-                    </View>
-                </ScrollView>
+                <View tabLabel="最新" style={styles.tabView}>
+                    <Moments>
+                    </Moments>
+                </View>
+                <View tabLabel="推荐" style={styles.tabView}>
+                    <Moments>
+                    </Moments>
+                </View>
             </ScrollableTabView>
         );
     },

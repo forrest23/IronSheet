@@ -24,7 +24,7 @@ var IronSheet = React.createClass({
     render: function () {
         return (
             <TabBarIOS selectedTab={this.state.selectedTab}>
-                <TabBarIOS.Item accessibilityLabel={"Excellent"}
+                <TabBarIOS.Item accessibilityLabel={"Home"}
                                 selected={this.state.selectedTab === 'home'}
                                 title="首页"
                                 name="home"
@@ -43,14 +43,14 @@ var IronSheet = React.createClass({
                                   itemWrapperStyle={Style.navigator}/>
                 </TabBarIOS.Item>
 
-                <TabBarIOS.Item accessibilityLabel={"Nodes"}
-                                selected={this.state.selectedTab === 'nodes'}
+                <TabBarIOS.Item accessibilityLabel={"Circle"}
+                                selected={this.state.selectedTab === 'circle'}
                                 title="铁皮圈"
-                                name="nodes"
+                                name="circle"
                                 icon={{uri:'nodes.png'}}
                                 onPress={() => {
                     this.setState({
-                      selectedTab: 'nodes'
+                      selectedTab: 'circle'
                     });
                 }}>
 
@@ -64,14 +64,14 @@ var IronSheet = React.createClass({
 
                 </TabBarIOS.Item>
 
-                <TabBarIOS.Item accessibilityLabel={"About"}
-                                selected={this.state.selectedTab === 'about'}
+                <TabBarIOS.Item accessibilityLabel={"Auction"}
+                                selected={this.state.selectedTab === 'auction'}
                                 title="代拍"
-                                name="about"
+                                name="auction"
                                 icon={{uri: 'reactnative_logo.png'}}
                                 onPress={() => {
                     this.setState({
-                      selectedTab: 'about'
+                      selectedTab: 'auction'
                     });
                 }}>
 
@@ -79,7 +79,7 @@ var IronSheet = React.createClass({
                                   tintColor={'#333344'}
                                   initialRoute={{
                       title: '代拍',
-                      component: require('./ios_view/home')
+                      component: require('./ios_view/auction')
                     }}
                                   itemWrapperStyle={Style.navigator}/>
 
