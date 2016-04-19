@@ -2,11 +2,13 @@
  * Created by fgmh on 16/4/5.
  * 代拍商家列表
  * auctionSellers.js
+ * /Users/fgmh/Project/React/IronSheet/ios_view/auctionSellersDetail.js
  */
 'use strict';
 var React = require('react-native');
-var Util =require('./common/util.js');
-var Api =require('./common/api.js');
+var Util = require('./common/util.js');
+var Api = require('./common/api.js');
+var AuctionSellersDetail = require('./auctionSellersDetail.js');
 
 var {
     StyleSheet,
@@ -18,12 +20,12 @@ var {
     NavigatorIOS,
     ListView,
     ActivityIndicatorIOS
-    } = React
+} = React
 
 var CACHE = [];
 
 var auctionSellers = React.createClass({
-    getInitialState: function(){
+    getInitialState: function () {
         return {
             dataSource: new ListView.DataSource({
                 rowHasChanged: (r1, r2) => r1 !== r2
@@ -34,18 +36,18 @@ var auctionSellers = React.createClass({
             end: false,
         };
     },
-    componentDidMount: function(){
+    componentDidMount: function () {
         this.fetchData(1);
     },
-    cache: function(items){
+    cache: function (items) {
         for (var i in items) {
             CACHE.push(items[i]);
         }
     },
 
-    fetchData: function(page){
-        console.log('loading page '+page+'...');
-        if(this.state.loadingPage == page)
+    fetchData: function (page) {
+        console.log('loading page ' + page + '...');
+        if (this.state.loadingPage == page)
             return;
 
         this.setState({
@@ -68,32 +70,32 @@ var auctionSellers = React.createClass({
             .catch((error) => {
                 React.AlertIOS.alert(
                     'error',
-                    '请求失败:'+error.message
+                    '请求失败:' + error.message
                 );
             })
             .then((responseData) => {
-                if(!responseData.showapi_res_body){
-                    this.setState({end: true});
+                if (!responseData.showapi_res_body) {
+                    this.setState({ end: true });
                     return;
                 }
 
                 this.cache(responseData.showapi_res_body.newslist);
 
 
-                console.log('loaded data, page'+page);
+                console.log('loaded data, page' + page);
 
-                if(responseData.error){
+                if (responseData.error) {
                     React.AlertIOS.alert(
                         'error',
                         '请求错误'
                     );
-                }else{
+                } else {
                     this.setState({
                         dataSource: this.state.dataSource.cloneWithRows(CACHE),
                         loaded: true,
                         loading: false,
                         end: false,
-                        currentPage: this.state.currentPage+1,
+                        currentPage: this.state.currentPage + 1,
                     });
                 }
             })
@@ -102,43 +104,53 @@ var auctionSellers = React.createClass({
 
 
 
-    render: function(){
-        if(this.state.loadingPage == 1 && !this.state.loaded){
+    render: function () {
+        if (this.state.loadingPage == 1 && !this.state.loaded) {
             return (
                 <View style={styles.container}>
-                    <ActivityIndicatorIOS color="#356DD0" style={{marginVertical: 30,marginBottom: 30}} />
+                    <ActivityIndicatorIOS color="#356DD0" style={{ marginVertical: 30, marginBottom: 30 }} />
                 </View>
             );
         }
         return this.renderTopicList();
     },
 
-    renderFooter: function() {
-        if(this.state.loaded){
-            return <View style={{marginVertical: 30}} ><Text></Text></View>;
+    renderFooter: function () {
+        if (this.state.loaded) {
+            return <View style={{ marginVertical: 30 }} ><Text></Text></View>;
         }
-        return <ActivityIndicatorIOS color="#356DD0"  style={{marginVertical: 30,marginBottom: 30}} />;
+        return <ActivityIndicatorIOS color="#356DD0"  style={{ marginVertical: 30, marginBottom: 30 }} />;
     },
 
-    _renderRow: function(row){
+    _renderRow: function (row) {
         return (
             <View>
                 <View style={[styles.row]}>
-                    <TouchableOpacity style={[styles.part_left]}>
-                        <Image style={styles.messageImage} source={{uri: row.picUrl}}></Image>
+                    <TouchableOpacity style={[styles.part_left]} onPress={() => this.showDetail(row) }>
+                        <Image style={styles.messageImage} source={{ uri: row.picUrl }}></Image>
                     </TouchableOpacity>
-                    <View style={[styles.part_right]}>
-                        <TouchableOpacity>
-                            <Text style={[styles.name_text]}>最牛代拍--三次必中</Text>
-                        </TouchableOpacity>
-                    </View>
+                    <TouchableOpacity style={[styles.part_right]} onPress={() => this.showDetail(row) }>
+                        <Text style={[styles.name_text]}>上海最牛代拍--三次必中--不中不收钱不中不收钱</Text>
+                        <Text style={[styles.info_text]}>代拍 86次，成功率 80%</Text>
+                        <Text style={[styles.info_price]}>￥10000</Text>
+                        <Text style={[styles.info_text]}>上海代拍旗舰店</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
-
         );
     },
 
-    onEndReached: function() {
+    showDetail(row) {
+        this.props.navigator.push({
+            title: '商家明细',
+            component: AuctionSellersDetail,
+            passProps: {
+                data: row
+            }
+        });
+    },
+
+    onEndReached: function () {
         //if(this.state.end || !this.state.loaded) {
         //    return;
         //}
@@ -147,7 +159,7 @@ var auctionSellers = React.createClass({
         //}
     },
 
-    renderTopicList: function(){
+    renderTopicList: function () {
         return (
             <ListView
                 style={styles.listView}
@@ -161,16 +173,16 @@ var auctionSellers = React.createClass({
         );
     },
 
-    renderTopicListCell: function(data){
+    renderTopicListCell: function (data) {
         return (
             <TopicListCell
                 onSelect={
-					() => this.selectTopic(data)
-				}
+                    () => this.selectTopic(data)
+                }
                 data={data} />
         );
     },
-    selectTopic: function(data){
+    selectTopic: function (data) {
         this.props.navigator.push({
             title: '详细' + (data.replies_count ? '（' + data.replies_count.toString() + '条回复）' : ''),
             component: TopicView,
@@ -193,20 +205,20 @@ var styles = StyleSheet.create({
         flexDirection: 'row',
         borderColor: '#ccc',
         borderBottomWidth: 1,
-        marginTop:10,
+        marginTop: 10,
         height: 110,
     },
     rowMessage: {
         flexDirection: 'row',
-        marginTop:5,
+        marginTop: 5,
     },
     part_left: {
         flex: 3,
-        marginLeft:8,
+        marginLeft: 8,
     },
     part_right: {
         flex: 5,
-        marginLeft:5,
+        marginLeft: 0,
     },
     logo: {
         width: 40,
@@ -218,16 +230,28 @@ var styles = StyleSheet.create({
         fontSize: 16,
         color: '#82CAFF',
     },
+    info_text:
+    {
+        fontSize: 12,
+        color: '#000000',
+        marginTop: 5,
+    },
+    info_price:
+    {
+        fontSize: 16,
+        color: '#FF2D2D',
+        marginTop: 5,
+    },
     moments_text:
     {
         fontSize: 15,
-        marginTop:5,
+        marginTop: 5,
     },
     moments_date:
     {
         fontSize: 12,
-        marginTop:8,
-        marginBottom:10,
+        marginTop: 8,
+        marginBottom: 10,
         color: '#657383',
     },
     message:
@@ -237,12 +261,12 @@ var styles = StyleSheet.create({
     },
     messageImage:
     {
-        width: 130,
+        width: 110,
         height: 100,
     },
     marBottom:
     {
-        marginBottom:0,
+        marginBottom: 0,
     }
 })
 

@@ -27,7 +27,7 @@ var auction = React.createClass({
         return (
             <ScrollView style={styles.container}>
                 <Swiper></Swiper>
-                <AuctionSellers></AuctionSellers>
+                <AuctionSellers navigator={this.props.navigator}></AuctionSellers>
             </ScrollView>
         );
     },
