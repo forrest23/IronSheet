@@ -6,6 +6,9 @@
 'use strict';
 
 var React = require('react-native');
+var Icon = require('react-native-vector-icons/Ionicons');
+var AddCircle = require('./ios_view/addCircle');
+
 var {
     AppRegistry,
     StyleSheet,
@@ -13,7 +16,7 @@ var {
     View,
     TabBarIOS,
     NavigatorIOS,
-    } = React;
+} = React;
 
 var IronSheet = React.createClass({
     getInitialState: function () {
@@ -21,90 +24,104 @@ var IronSheet = React.createClass({
             selectedTab: 'home'
         };
     },
+    componentWillMount: function () {
+        Icon.getImageSource('ios-camera-outline', 30).then((source) => this.setState({ plusIcon: source }));
+    },
     render: function () {
         return (
             <TabBarIOS selectedTab={this.state.selectedTab}>
-                <TabBarIOS.Item accessibilityLabel={"Home"}
-                                selected={this.state.selectedTab === 'home'}
-                                title="首页"
-                                name="home"
-                                icon={{uri: 'icon.png', isStatic: true}}
-                                onPress={() => {
-                    this.setState({
-                      selectedTab: 'home'
-                    });
-                }}>
+            
+             <Icon.TabBarItemIOS
+                    title="首页"
+                    iconName="ios-home-outline"
+                    selectedIconName="ios-home"
+                    selected={this.state.selectedTab === 'home'}
+                    onPress={() => {
+                        this.setState({
+                            selectedTab: 'home'
+                        });
+                    } }>
                     <NavigatorIOS style={Style.container}
-                                  tintColor={'#333344'}
-                                  initialRoute={{
-                      title: '最贵铁皮',
-                      component: require('./ios_view/home')
-                    }}
-                                  itemWrapperStyle={Style.navigator}/>
-                </TabBarIOS.Item>
+                        tintColor={'#333344'}
+                        initialRoute={{
+                            title: '最贵铁皮',
+                            component: require('./ios_view/home')
+                        }}
+                        itemWrapperStyle={Style.navigator}/>
+                </Icon.TabBarItemIOS>
 
                 <TabBarIOS.Item accessibilityLabel={"Circle"}
-                                selected={this.state.selectedTab === 'circle'}
-                                title="铁皮圈"
-                                name="circle"
-                                icon={{uri:'nodes.png'}}
-                                onPress={() => {
-                    this.setState({
-                      selectedTab: 'circle'
-                    });
-                }}>
+                    selected={this.state.selectedTab === 'circle'}
+                    title="铁皮圈"
+                    name="circle"
+                    icon={{ uri: 'nodes.png' }}
+                    onPress={() => {
+                        this.setState({
+                            selectedTab: 'circle'
+                        });
+                    } }>
 
                     <NavigatorIOS style={Style.container}
-                                  tintColor={'#333344'}
-                                  initialRoute={{
-                      title: '铁皮圈',
-                      component: require('./ios_view/circle')
-                    }}
-                                  itemWrapperStyle={Style.navigator}/>
+                        ref="nav"
+                        tintColor={'#333344'}
+                        initialRoute={{
+                            title: '铁皮圈',
+                            component: require('./ios_view/circle'),
+                            rightButtonIcon: this.state.plusIcon,
+                            onRightButtonPress: () => {
+                                this.refs.nav.navigator.push({
+                                    title: "",
+                                    component: AddCircle,
+                                    rightButtonTitle: '发送',
+                                    onRightButtonPress: () => { this.refs.nav.navigator.pop(); }
+                                });
+                            }
+                        }}
+                        itemWrapperStyle={Style.navigator}/>
 
                 </TabBarIOS.Item>
 
                 <TabBarIOS.Item accessibilityLabel={"Auction"}
-                                selected={this.state.selectedTab === 'auction'}
-                                title="代拍"
-                                name="auction"
-                                icon={{uri: 'reactnative_logo.png'}}
-                                onPress={() => {
-                    this.setState({
-                      selectedTab: 'auction'
-                    });
-                }}>
+                    selected={this.state.selectedTab === 'auction'}
+                    title="代拍"
+                    name="auction"
+                    icon={{ uri: 'reactnative_logo.png' }}
+                    onPress={() => {
+                        this.setState({
+                            selectedTab: 'auction'
+                        });
+                    } }>
 
                     <NavigatorIOS style={Style.container}
-                                  tintColor={'#333344'}
-                                  initialRoute={{
-                      title: '代拍',
-                      component: require('./ios_view/auction')
-                    }}
-                                  itemWrapperStyle={Style.navigator}/>
+                        tintColor={'#333344'}
+                        initialRoute={{
+                            title: '代拍',
+                            component: require('./ios_view/auction')
+                        }}
+                        itemWrapperStyle={Style.navigator}/>
 
                 </TabBarIOS.Item>
 
-                <TabBarIOS.Item accessibilityLabel={"Me"}
-                                selected={this.state.selectedTab === 'me'}
-                                title="我"
-                                name="me"
-                                icon={{uri: 'reactnative_logo.png'}}
-                                onPress={() => {
-                    this.setState({
-                      selectedTab: 'me'
-                    });
-                }}>
+                <Icon.TabBarItemIOS
+                    title="我的"
+                    iconName="ios-person-outline"
+                    selectedIconName="ios-person"
+                    selected={this.state.selectedTab === 'me'}
+                    onPress={() => {
+                        this.setState({
+                            selectedTab: 'me'
+                        });
+                    } }>
 
                     <NavigatorIOS style={Style.container}
-                                  tintColor={'#333344'}
-                                  initialRoute={{
-                      title: '我',
-                      component: require('./ios_view/me')
-                    }}
-                                  itemWrapperStyle={Style.navigator}/>
+                        tintColor={'#333344'}
+                        initialRoute={{
+                            title: '我',
+                            component: require('./ios_view/me')
+                        }}
+                        itemWrapperStyle={Style.navigator}/>
 
-                </TabBarIOS.Item>
+                </Icon.TabBarItemIOS>
             </TabBarIOS>
         );
     }

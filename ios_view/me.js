@@ -206,7 +206,19 @@ var styles = StyleSheet.create({
     rowText: {
         fontSize: 16,
         paddingTop: 12,
-    }
+    },
+    btn:{
+        width:60,
+        height:30,
+        borderRadius:3,
+        backgroundColor:'#FFBA27',
+        padding:5,
+    },
+    btn_text:{
+        lineHeight:18,
+        textAlign:'center',
+        color:'#fff',
+    },
 });
 
 
