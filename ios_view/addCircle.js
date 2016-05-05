@@ -101,7 +101,7 @@ var addCircle = React.createClass({
             <View style={styles.container}>
                 <View style={styles.topContainer}>
                     <TextInput style={styles.textInput}  placeholder="今天又没拍中？"
-                        autoFocus={true} multiline={true}/>
+                        autoFocus={true} multiline={true} returnKeyType='done'/>
                     <View style={styles.imageContainer}>
                         { rows }
                     </View>
@@ -146,7 +146,8 @@ var styles = StyleSheet.create({
     {
         height: 100,
         paddingLeft: 10,
-        paddingRight: 10,
+        paddingRight: 10, 
+        fontSize: 18,
     },
     imageContainer:
     {

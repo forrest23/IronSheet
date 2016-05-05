@@ -16,59 +16,54 @@ var {
     TextInput,
     Image,
     ActionSheetIos
-    } = React;
+} = React;
 
 var home = React.createClass({
+    getInitialState: function () {
+        return {
+            rows: ['row1', 'row2', 'row3', 'row4', 'row5', 'row6']
+        };
+    },
 
     render: function () {
+        var rowViews = this.state.rows.map(function (r, j) {
+            return (
+                <View style={styles.row}>
+                    <Text>{r}</Text>
+                </View>
+            );
+        });
+
         return (
             <View style={styles.container}>
                 <Swiper></Swiper>
-
+                <View style={styles.list}>
+                    {rowViews}
+                </View>
             </View>
 
         );
     },
-
-    _login: function () {
-        console.log('');
-    }
-
 });
 
 
 var styles = StyleSheet.create({
     container: {
+        flex: 1,
+        left:0,
         marginTop: 50,
-        alignItems: 'center',
     },
-    logo: {
-        width: 100,
-        height: 100,
-        resizeMode: Image.resizeMode.contain
-    },
-    inputRow: {
+    list: {
+        flex: 1,
         flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 10,
+        flexWrap: 'wrap',
+
     },
-    input: {
-        marginLeft: 10,
-        width: 220,
-        height: 35,
-        paddingLeft: 8,
-        borderRadius: 5,
-        borderColor: '#ccc'
-    },
-    btn: {
-        marginTop: 10,
-        width: 80,
-        height: 35,
-        backgroundColor: '#3BC1FF',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 4,
+    row: {
+        backgroundColor: 'red',
+        margin: 3,
+        flex: 1,
+        height: 100,
     }
 });
 
